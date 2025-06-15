@@ -18,4 +18,10 @@ public function update_berita ($id, $data){
     $this->db->where('idberita',$id);
     return $this->db->update('berita', $data);
 }
+public function get_laporan_berita ($dari, $sampai)
+{
+    $this->db->where('tanggal_publish >=',$dari);
+    $this->db->where('tanggal_publish <=',$sampai);
+    return $this->db->get('berita')->result();
+}
 }

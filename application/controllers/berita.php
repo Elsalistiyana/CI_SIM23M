@@ -25,15 +25,18 @@ class berita extends CI_Controller{
         $headline=$this->input->post('headline');
         $isi=$this->input->post('isi_berita');
         $pengirim=$this->input->post('pengirim');
+        $tgl_publish=$this->input->post('tgl_publish');
 
     $data=array(
         'judul'=>$judul,
         'kategori'=>$kategori,
         'headline'=>$headline,
         'isi_berita'=>$isi,
-        'pengirim'=>$pengirim
+        'pengirim'=>$pengirim,
+        'tgl_publish'=>$tgl_publish
     );
     $result=$this->berita_model->insert_berita($data);
+
     if($result) {
         $this->session->set_flashdata('success','Berita berhasil disimpan');
         redirect('berita');
@@ -72,5 +75,25 @@ class berita extends CI_Controller{
     public function hapus($idberita){
         $this->berita_model->delete_berita($idberita);
         redirect('berita');
+    }
+    public function laporan()
+    {
+        $this->load->view('templates/header');
+        $this->load->view('berita/laporan_form');
+        $this->load->view('templates/footer');
+    }
+
+    public function cetak_laporan()
+    {
+        $tanggal_dari= $this->input->post('tanggal_dari');
+        $tanggal_sampai= $this->input->post('tanggal_sampai');
+
+        $data['berita'] = $this->berita_model->get_laporan_berita($tanggal_dari, $tanggal_sampai);
+        $data['tanggal_dari'] = $tanggal_dari;
+        $data['tanggal_sampai'] = $tanggal_sampai;
+        // print_r($data);
+        $this->load->view('templates/header');
+        $this->load->view('berita/laporan_hasil', $data);
+        $this->load->view('templates/footer');
     }
 }

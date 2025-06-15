@@ -67,7 +67,7 @@ class Auth extends CI_Controller{
 	private function redirect_by_role($role){
 		switch($role){
 			case 'admin':
-				redirect('berita/index');
+				redirect('dashboard');
 				break;
 			case 'user':
 				redirect('user/dashboard');

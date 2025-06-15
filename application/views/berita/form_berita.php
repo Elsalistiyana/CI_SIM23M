@@ -56,6 +56,10 @@
                 <label for="pengirim">Pengirim</label>
                 <input type="text"class="form-control" name="pengirim" id="pengirim" placeholder="pengirim" required>
             </div>
+            <div class="form-group">
+                <label for="tgl_publish">Tanggal Publish</label>
+                <input type="text"class="form-control" name="tgl_publish" id="tgl_publish" placeholder="tgl_publish" required>
+            </div>
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
